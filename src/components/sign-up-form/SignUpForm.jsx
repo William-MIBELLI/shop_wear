@@ -35,9 +35,7 @@ const SignUpForm = () => {
         try{
 
             const { user } = await createUserWithEmail(auth, email, password)
-            console.log('user : ', user)
-            const resp = await createUserDocumentFromAuth(user, { displayName })
-            console.log('resp : ', resp)
+            await createUserDocumentFromAuth(user, { displayName })
 
         }catch(error){
             console.log('error : ',error)

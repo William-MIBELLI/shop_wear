@@ -1,11 +1,12 @@
 import { initializeApp } from 'firebase/app'
 import { 
     getAuth, 
-    signInWithRedirect,
     signInWithPopup,
     GoogleAuthProvider,
     signInWithEmailAndPassword,
-    createUserWithEmailAndPassword } from 'firebase/auth'
+    createUserWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged } from 'firebase/auth'
 import { getFirestore, doc, getDoc, setDoc} from 'firebase/firestore'
 
 // Your web app's Firebase configuration
@@ -23,7 +24,7 @@ const firebaseConfig = {
   const googleProvider = new GoogleAuthProvider().setCustomParameters({prompt: 'select_account'})
   const db = getFirestore()
   
-  export const auth = getAuth()
+  export const auth = getAuth(firebaseApp)
   export const signInWithGoogle = () => signInWithPopup(auth, googleProvider)
 
   export const createUserDocumentFromAuth = async(user, optionnalParams = {}) =>{
@@ -50,11 +51,28 @@ const firebaseConfig = {
     return userRef
   }
 
+
   export const createUserWithEmail = async (auth, email, password) => {
     console.log('on rentre dans createuser dans firebase.js')
      if(!email || !password){
         return
      } 
     return createUserWithEmailAndPassword(auth, email, password)
+  }
+
+
+  export const signInWithMail = async (email, password) => {
+
+    if(email === '' || password === ''){
+        return
+    }
+
+    return signInWithEmailAndPassword(auth, email, password)
+  }
+
+  export const signOutUser = () => signOut(auth)
+
+  export const onAuthStateChangedListener = (callback) => {
+    onAuthStateChanged(auth, callback)
   }
   
