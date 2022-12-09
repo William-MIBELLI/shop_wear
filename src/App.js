@@ -4,6 +4,7 @@ import { Routes, Route, Outlet } from 'react-router-dom'
 import Navigation from './routes/navigation-bar/Navigation'
 import Authentication from './routes/authentication/Authentication'
 import Shop from './routes/shop/Shop'
+import Checkout from './routes/check-out/Checkout'
 
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
         <Route index element={<Home/>}/>
         <Route path='shop' element={<Shop/>}/>
         <Route path='Auth' element={<Authentication/>}/>
+        <Route path='checkout' element={<Checkout/>}/>
       </Route>
     </Routes>
   )
