@@ -1,0 +1,13 @@
+.category-product-container{
+    h2{
+        text-align: center;
+    }
+}
+.productcard-container{
+    display: grid;
+    grid-template-columns:  repeat(4,1fr);
+    column-gap: 20px;
+    row-gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}

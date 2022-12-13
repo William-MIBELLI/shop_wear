@@ -1,7 +1,7 @@
 import React from 'react'
 import FormInput from '../form-input/FormInput'
 import './SignInForm.style.scss'
-import Button from '../button/Button'
+import Button, { BUTTON_TYPE_CLASSES } from '../button/Button'
 import { useState } from 'react'
 import { signInWithGoogle, createUserDocumentFromAuth, signInWithMail } from '../../utils/Firebase'
 
@@ -51,7 +51,7 @@ const SignInForm = () => {
           <FormInput required label='Password' value={password} type='password' name='password' onChange={changeHandler}/>
           <div className="btn-container">
             <Button type='submit' onSubmit={logInWithEmail}>Sign in</Button>
-            <Button type='button' button_type='google' onClick={logInGooglePopup}>Log by Google</Button>
+            <Button type='button' button_type={BUTTON_TYPE_CLASSES.google} onClick={logInGooglePopup}>Log by Google</Button>
           </div>
         </form>
     </div>

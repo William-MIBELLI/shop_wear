@@ -1,21 +1,24 @@
 import React from 'react'
-import './Menu.style.scss'
+import { CategoriesContainer } from './Menu.style'
 import CategoryItem from '../category-item/CategoryItem';
 
 const Menu = ({ categories }) => {
+
+  console.log('cate depuis menu : ', categories)
     
   return (
-    <div className="categories-container">
+    <CategoriesContainer>
       {
         categories.map((category) => {
 
-          return (<CategoryItem key={category.id}
+          return (
+          <CategoryItem key={category.id}
             category={category}
           ></CategoryItem>)
         }
         )
       }
-    </div>
+    </CategoriesContainer>
   )
 }
 
