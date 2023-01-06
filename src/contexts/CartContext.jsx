@@ -32,7 +32,6 @@ const removeItemFromCart = (cart, itemToRemove) => {
 };
 
 const changeQuantityItemOnCart = (cart, itemName, mode) => {
-  console.log("mode : ", mode);
   const finded = cart.find((item) => item.name === itemName);
   if (finded.quantity === 1 && mode !== "+") {
     return removeItemFromCart(cart, finded.name);
@@ -63,8 +62,7 @@ const INITIAL_STATE = {
 
 const cartReducer = (state, action) => {
   const { type, payload } = action
-  console.log('dispatch')
-  console.log(action)
+
   switch(type){
     case ACTION_TYPE.CHANGE_DISPLAY_CART:
       return {
@@ -87,7 +85,6 @@ export const CartProvider = ({ children }) => {
 
   const setDisplayCart = () => {
     dispatch({type: ACTION_TYPE.CHANGE_DISPLAY_CART, payload: !displayCart})
-    console.log(displayCart)
   }
 
   const updateCartItem = (newCartItem) => {

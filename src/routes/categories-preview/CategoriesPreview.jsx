@@ -6,7 +6,6 @@ import { selectCategoriesMap } from '../../store/category/category.selector'
 const CategoriesPreview = () => {
 
     const  categories  = useSelector(selectCategoriesMap)
-    console.log(categories)
 
     return   categories && Object.keys(categories).map(title => {
 

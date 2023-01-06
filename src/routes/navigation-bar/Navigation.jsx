@@ -8,13 +8,14 @@ import CartDropdown from '../../components/cart-dropdown/CartDropdown'
 import { NavigationBar, LogoContainer, NavLinks, NavLink } from './Navigation.style'
 import {  useSelector } from 'react-redux'
 import { selectDisplayCart } from '../../store/cart/cart.selector'
+import { selectCategoryReducer } from '../../store/category/category.selector'
 
 
 const Navigation = () => {
 
     const { currentUser } = useSelector((state) => state.user )
     const displayCart = useSelector(selectDisplayCart)
-    console.log('call displaycart depuis nav')
+    const cat = useSelector(selectCategoryReducer)
 
     return (
         <>

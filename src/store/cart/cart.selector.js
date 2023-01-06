@@ -1,16 +1,30 @@
+import { createSelector } from 'reselect'
+
+const selectCartReducer = state => state.cart
+
 export const selectDisplayCart = (state) => {
-    //console.log('select displaycart state.cart : ', state.cart)
     return state.cart.displayCart
 }
 export const selectCartItems = (state) => {
-    console.log('cartitem depuis selector  : ', state.cart)
     return state.cart.cartItems
 }
-export const selectCartNbItems = state => {
-    return state.cart.nbItems
-}
+
 export const selectCartForCheckout = state => {
-    console.log('state cart : ', state.cart)
     const { cartItems, cartTotal } = state.cart
     return { cartItems, cartTotal }
 }
+ export const selectCartTotal = createSelector(
+    [selectCartReducer],
+    cart => cart.cartItems.reduce(
+        (total, current) => total + current.quantity * current.price,
+        0
+      )
+ )
+
+ export const selectCartNbItems = createSelector(
+    [selectCartReducer], 
+    cart => cart.cartItems.reduce(
+        (total, current) => total + current.quantity,
+        0
+      )
+ )

@@ -6,31 +6,21 @@ export const updateCart = (cartItems, product) => {
 };
 
 export const removeItem = (state, itemToRemove) => {
-    console.log('click removeitem, state : ', state.cart)
     const newCartItem = removeItemFromCart(state, itemToRemove)
     return updateCartItem(newCartItem)
 };
 
 export const changeQuantity = (state, itemName, mode) => {
-    console.log('click changequantity')
     const newCartItem = changeQuantityItemOnCart(state, itemName, mode)
     return updateCartItem(newCartItem)
 };
 
 export const setDisplayCart = (displayCart = true) => {
-    //console.log('displayCart, state : ', state)
     return {type: CART_ACTION_TYPE.CHANGE_DISPLAY_CART, payload: !displayCart}
   }
 const updateCartItem = (newCartItem) => {
-    const newNbItems = newCartItem.reduce(
-      (total, current) => total + current.quantity,
-      0
-    );
-    const newTotal = newCartItem.reduce(
-      (total, current) => total + current.quantity * current.price,
-      0
-    );
-    return {type: CART_ACTION_TYPE.SET_CART_ITEMS, payload: {cartItems: newCartItem, nbItems: newNbItems, cartTotal: newTotal}}
+
+    return {type: CART_ACTION_TYPE.SET_CART_ITEMS, payload: {cartItems: newCartItem}}
   }
 
   const removeItemFromCart = (cart, itemToRemove) => {
@@ -41,8 +31,9 @@ const updateCartItem = (newCartItem) => {
   };
   
   const changeQuantityItemOnCart = (cart, itemName, mode) => {
-    console.log("mode : ", mode);
+
     const finded = cart.find((item) => item.name === itemName);
+
     if (finded && finded.quantity === 1 && mode !== "+") {
       return removeItemFromCart(cart, finded.name);
     }
@@ -54,8 +45,10 @@ const updateCartItem = (newCartItem) => {
           }
         : product;
     });
+
     return temp;
   };
+  
   const addItemsToCart = (cart, productToAdd) => {
     const existingItem = cart.find((item) => item.id === productToAdd.id);
     if (existingItem) {

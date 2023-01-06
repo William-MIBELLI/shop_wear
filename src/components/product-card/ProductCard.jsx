@@ -13,7 +13,6 @@ const ProductCard = ({ products }) => {
     const cartItems = useSelector(selectCartItems)
 
     const clickHandler = (event) => {
-      console.log('cartitem depuis click productcard ',cartItems)
       dispatch(updateCart(cartItems, products))
     }
 

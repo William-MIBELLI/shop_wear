@@ -4,8 +4,6 @@ import { CART_ACTION_TYPE } from "./cart.type"
 const CART_INITIAL_VALUE = {
     displayCart: false,
     cartItems: [],
-    nbItems: 0,
-    cartTotal: 0,
 }
 
 export const cartReducer = ( state = CART_INITIAL_VALUE, action = {}) => {

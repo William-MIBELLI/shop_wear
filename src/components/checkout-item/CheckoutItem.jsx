@@ -12,12 +12,10 @@ const CheckoutItem = ({ product }) => {
 
 
     const removeClickHandler = () => {
-        console.log('product dans removelcickhandler : ', name)
         dispatch(removeItem(cartItems, name))
     }
 
     const quantityClickHandler = event => {
-        console.log('event : ',event)
         const { value } = event.target.attributes.value
         dispatch(changeQuantity(cartItems, name, value))
     }

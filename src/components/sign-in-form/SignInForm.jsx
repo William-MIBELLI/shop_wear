@@ -31,7 +31,6 @@ const SignInForm = () => {
     }
     try{
       const { user } = await signInWithMail(email, password)
-      console.log(user)
     }catch(error){
       console.log('erreur : ', error)
     }

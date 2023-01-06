@@ -3,12 +3,13 @@ import './Checkout.style.scss'
 import { useEffect } from 'react'
 import CheckoutItem from '../../components/checkout-item/CheckoutItem'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectCartForCheckout } from '../../store/cart/cart.selector'
+import { selectCartForCheckout, selectCartTotal } from '../../store/cart/cart.selector'
 import { setDisplayCart } from '../../store/cart/cart.action'
 
 const Checkout = () => {
 
-    const { cartItems, cartTotal } = useSelector(selectCartForCheckout)
+    const { cartItems } = useSelector(selectCartForCheckout)
+    const cartTotal = useSelector(selectCartTotal)
     const dispatch = useDispatch()
 
     useEffect(() => {

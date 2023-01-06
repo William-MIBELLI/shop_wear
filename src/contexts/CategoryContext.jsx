@@ -18,7 +18,6 @@ export const CategoryProvider = ({ children }) => {
     useEffect(() => {
         const getCategorie = async () => {
            const temp = await getCategoriesAndDocument()
-           console.log('temp : ', temp)
            setCategories(temp)
         }
 

@@ -11,7 +11,6 @@ const CartIcon = () => {
   const displayCart = useSelector(selectDisplayCart)
   const nbItems = useSelector(selectCartNbItems)
   const dispatch = useDispatch()
-  console.log('call displaycart depuis cartIcon')
   
   const clickHandler = () => {
     dispatch(setDisplayCart(displayCart));
