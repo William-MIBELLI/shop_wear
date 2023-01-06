@@ -2,8 +2,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { createContext } from "react";
-import SHOP_DATA from '../shop-data.js'
-import { createCollectionOrDocument, getCategoriesAndDocument } from "../utils/Firebase.js";
+import { getCategoriesAndDocument } from "../utils/Firebase.js";
 
 
 

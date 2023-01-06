@@ -1,16 +1,18 @@
 import React from 'react'
 import './Checkout.style.scss'
-import { useContext } from 'react'
-import { CartContext } from '../../contexts/CartContext'
 import { useEffect } from 'react'
 import CheckoutItem from '../../components/checkout-item/CheckoutItem'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectCartForCheckout } from '../../store/cart/cart.selector'
+import { setDisplayCart } from '../../store/cart/cart.action'
 
 const Checkout = () => {
 
-    const { cartItems, setDisplayCart, cartTotal } = useContext(CartContext)
+    const { cartItems, cartTotal } = useSelector(selectCartForCheckout)
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        setDisplayCart(false)
+        dispatch(setDisplayCart())
     },[])
 
 
@@ -33,7 +35,7 @@ const Checkout = () => {
                 <span>Remove</span>
             </div>
         </div>
-        {cartItems.map(product => {
+        {cartItems && cartItems.map(product => {
             return (
                 <CheckoutItem key={product.id} product={product}/>
             )

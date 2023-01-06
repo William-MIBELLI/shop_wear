@@ -4,7 +4,6 @@ import CategoryItem from '../category-item/CategoryItem';
 
 const Menu = ({ categories }) => {
 
-  console.log('cate depuis menu : ', categories)
     
   return (
     <CategoriesContainer>

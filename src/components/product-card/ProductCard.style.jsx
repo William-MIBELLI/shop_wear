@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Button from '../button/Button'
+
 
 export const CardContainer = styled.div`
   width: 100%;
@@ -8,6 +8,25 @@ export const CardContainer = styled.div`
   height: 350px;
   align-items: center;
   position: relative;
+
+  button{
+    width: 80%;
+    opacity: 0.7;
+    position: absolute;
+    top: 255px;
+    display: none;
+
+    &:hover{
+      opacity: 0.85;
+      display: flex;
+    }
+  }
+
+  &:hover{
+    button{
+      display: flex;
+    }
+  }
 `
 
 export const Image = styled.img`
@@ -21,6 +40,7 @@ export const Image = styled.img`
     opacity: 0.8;
     border: none;
   }
+  
 `
 
 export const Footer = styled.div`
@@ -38,15 +58,4 @@ export const Name =styled.span`
 export const Price = styled.span`
     width: 10%;
 `
-export const Btn = styled(Button)`
-  width: 80%;
-  opacity: 0.7;
-  position: absolute;
-  top: 255px;
-  display: flex;
 
-  &:hover{
-    opacity: 0.85;
-    display: flex;
-  }
-`

@@ -1,5 +1,3 @@
-import { useContext } from 'react'
-import { CategoryContext } from '../../contexts/CategoryContext'
 import './Shop.style.scss'
 import { Route, Routes } from 'react-router-dom'
 import CategoriesPreview from '../categories-preview/CategoriesPreview'
@@ -7,9 +5,6 @@ import Category from '../category/Category'
 
 const Shop = () => {
 
-
-    const { categories } = useContext(CategoryContext)
-    
     return (
         <Routes>
             <Route index element={<CategoriesPreview/>}/>

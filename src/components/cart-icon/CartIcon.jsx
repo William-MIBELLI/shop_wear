@@ -1,16 +1,20 @@
 import React from 'react'
-import { useContext } from 'react'
-import { CartContext } from '../../contexts/CartContext'
+import { useDispatch, useSelector } from 'react-redux'
+import { setDisplayCart } from '../../store/cart/cart.action'
+import { selectCartNbItems, selectDisplayCart } from '../../store/cart/cart.selector'
 
 import { CartIconContainer, ShoppingIcon, ItemCount} from './CartIcon.style'
 
 
 const CartIcon = () => {
 
-  const { displayCart, setDisplayCart, nbItems } = useContext(CartContext)
+  const displayCart = useSelector(selectDisplayCart)
+  const nbItems = useSelector(selectCartNbItems)
+  const dispatch = useDispatch()
+  console.log('call displaycart depuis cartIcon')
   
   const clickHandler = () => {
-    setDisplayCart(!displayCart)
+    dispatch(setDisplayCart(displayCart));
   }
   
   return (

@@ -1,19 +1,20 @@
-import { useContext } from 'react'
+
 import { Outlet, Link } from 'react-router-dom'
 import { ReactComponent as CrwnLogo } from '../../assets/crown.svg'
-import { UserContext } from '../../contexts/UserContext'
 import { signOutUser } from '../../utils/Firebase'
 import CartIcon from '../../components/cart-icon/CartIcon'
 import CartDropdown from '../../components/cart-dropdown/CartDropdown'
-import { CartContext } from '../../contexts/CartContext'
 
 import { NavigationBar, LogoContainer, NavLinks, NavLink } from './Navigation.style'
+import {  useSelector } from 'react-redux'
+import { selectDisplayCart } from '../../store/cart/cart.selector'
 
 
 const Navigation = () => {
 
-    const { currentUser } = useContext(UserContext)
-    const { displayCart } = useContext(CartContext)
+    const { currentUser } = useSelector((state) => state.user )
+    const displayCart = useSelector(selectDisplayCart)
+    console.log('call displaycart depuis nav')
 
     return (
         <>

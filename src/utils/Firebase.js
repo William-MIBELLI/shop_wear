@@ -58,12 +58,8 @@ export const getCategoriesAndDocument = async () => {
 
   const datas = await getDocs(q)
   
-  const categoryMap = datas.docs.reduce((acc, current) => {
-    const { title, items } = current.data()
-    acc[title.toLowerCase()] = items
-    return acc
-  },{})
-  console.log('cat from firebase : ', categoryMap)
+  const categoryMap = datas.docs.map(item => item.data())
+
   return categoryMap
 }
 

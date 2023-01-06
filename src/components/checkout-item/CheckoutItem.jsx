@@ -1,22 +1,25 @@
 import React from 'react'
-import { useContext } from 'react'
-import { CartContext } from '../../contexts/CartContext'
+import { useDispatch, useSelector } from 'react-redux'
+import { removeItem, changeQuantity } from '../../store/cart/cart.action'
+import { selectCartItems } from '../../store/cart/cart.selector'
 import { CheckoutItemContainer, ImageContainer, Img, RemoveBtn, Quantity, Name, Price, Arrow, Value} from './CheckoutItem.style.jsx'
 
 const CheckoutItem = ({ product }) => {
 
     const { name, quantity, price, imageUrl } = product
-    const { removeItem, changeQuantity } = useContext(CartContext)
+    const dispatch = useDispatch()
+    const cartItems = useSelector(selectCartItems)
+
 
     const removeClickHandler = () => {
         console.log('product dans removelcickhandler : ', name)
-        removeItem(name)
+        dispatch(removeItem(cartItems, name))
     }
 
     const quantityClickHandler = event => {
         console.log('event : ',event)
         const { value } = event.target.attributes.value
-        changeQuantity(name, value)
+        dispatch(changeQuantity(cartItems, name, value))
     }
     
 
