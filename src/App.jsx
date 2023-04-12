@@ -7,34 +7,22 @@ import Shop from './routes/shop/Shop'
 import Checkout from './routes/check-out/Checkout'
 
 import {  useEffect } from 'react'
-import { onAuthStateChangedListener, createUserDocumentFromAuth } from './utils/Firebase'
-import { setCurrentUser } from './store/user/user.action'
+import { checkUserSession } from './store/user/user.action'
 import { useDispatch } from 'react-redux'
-import { getCategoriesAndDocument } from './utils/Firebase'
-import { setCategories } from './store/category/category.action'
+import { fetchCategoriesStart } from './store/category/category.action'
+import React from 'react'
 
 const App = () => {
 
   const dispatch = useDispatch()
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
-        if(user){
-            createUserDocumentFromAuth(user)
-        }
-        dispatch(setCurrentUser(user))
-    })
-
-    return unsubscribe
+    dispatch(checkUserSession())
   },[])
 
   useEffect(() => {
-    const getCategorie = async () => {
-        const temp = await getCategoriesAndDocument()
-        dispatch(setCategories(temp))
-    }  
-    getCategorie()
-  },[])
+    dispatch(fetchCategoriesStart())
+  })
 
   return (
     <Routes>

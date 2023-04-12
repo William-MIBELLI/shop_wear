@@ -5,15 +5,22 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import { store } from './store/store';
+import { store, persistore } from './store/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { Elements } from '@stripe/react-stripe-js'
+import { stripePromise } from './utils/stripe/stripe.utils';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 //<React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <App /> 
-      </BrowserRouter>
+      <PersistGate loading={null} persistor={persistore}>
+        <BrowserRouter>
+          <Elements stripe={stripePromise}>
+            <App /> 
+          </Elements>
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
 //</React.StrictMode>
 );

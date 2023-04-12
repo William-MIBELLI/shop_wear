@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { ChangeEvent, FormEvent } from 'react'
 import { useState } from 'react'
-import { createUserWithEmail, auth, createUserDocumentFromAuth } from '../../utils/Firebase'
 import FormInput from '../form-input/FormInput'
-import './SignUpForm.style.scss'
+import { SignUpContainer } from './SignUpForm.style'
 import Button from '../button/Button'
+import { useDispatch } from 'react-redux'
+import { signUpStart } from '../../store/user/user.action'
 
 const defaultFields = {
     displayName: '',
@@ -16,13 +17,14 @@ const SignUpForm = () => {
 
     const [fields, setFields] = useState(defaultFields)
     const { displayName, email, password, confirmPassword } = fields
+    const dispatch = useDispatch()
 
-    const changeHandler = (event) => {
+    const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target
         setFields({...fields, [name]: value})
     }
     
-    const submitHandler = async (event) => {
+    const submitHandler = async (event: FormEvent<HTMLFormElement>) => {
 
        event.preventDefault()
 
@@ -32,18 +34,11 @@ const SignUpForm = () => {
             return
 
         }
-        try{
-
-            const { user } = await createUserWithEmail(auth, email, password)
-            await createUserDocumentFromAuth(user, { displayName })
-
-        }catch(error){
-            console.log('error : ',error)
-        }
+        dispatch(signUpStart(email, password, displayName))
     }
 
   return (
-    <div className='sign-up-container'>
+    <SignUpContainer>
         <h2>Don't have an account ?</h2>
         <span>Sign up with your email and password</span>
         <form onSubmit={submitHandler}>
@@ -53,7 +48,7 @@ const SignUpForm = () => {
             <FormInput required label='Confirm password' type="password" name="confirmPassword" onChange={changeHandler} value={confirmPassword}/>
             <Button type="submit">Sign up</Button>
         </form>
-    </div>
+    </SignUpContainer>
   )
 }
 
